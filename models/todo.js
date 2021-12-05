@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const schema = mongoose.Schema
+const Schema = mongoose.Schema
 
 const todoSchema = new Schema({
   name: {
@@ -8,4 +8,4 @@ const todoSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('Todo')
+module.exports = mongoose.model('Todo', todoSchema)
