@@ -2,7 +2,8 @@
 <ul>
   {{#each todos}}
   <li>
-    {{this.name}}
+
+    {{this.name}}<input type="checkbox" name="isDone" {{#if todo.isDone }} checked {{/if}} disabled>
     <a href="./todos/{{ this._id }}">detail</a>
     <a href="./todos/{{ this._id }}/edit">edit</a>
     <form action="./todos/{{ this._id }}/delete" method="POST" style="display: inline;">
