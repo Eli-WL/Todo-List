@@ -1,6 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars');
-const bodyParser = require('body-Parser')
+const bodyParser = require('body-parser')
 const methodOverride = require('method-override') // 載入 method-override
 // const Todo = require('./models/todo') // 載入 Todo model
 
