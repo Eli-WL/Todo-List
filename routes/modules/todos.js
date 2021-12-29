@@ -9,13 +9,21 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 
+//新增 Todo
 router.post('/', (req, res) => {
-  const name = req.body.name               // 從 req.body 拿出表單裡的 name 資料
-  return Todo.create({ name })             // 存入資料庫
-    .then(() => res.redirect('/'))         // 新增完成後導回首頁
+  // const name = req.body.name               // 從 req.body 拿出表單裡的 name 資料
+  // return Todo.create({ name })             // 存入資料庫
+  //   .then(() => res.redirect('/'))         // 新增完成後導回首頁
+  //   .catch(error => console.log(error))
+
+  const todos = String(req.body.name).split(',').map(todo => ({ name: todo }));  // 從 req.body 拿出表單裡的 name 資料
+  return Todo.insertMany(todos)
+    .then(() => res.redirect('/')) // 新增完成後導回首頁
     .catch(error => console.log(error))
 })
 
+
+//Todo 詳細資料
 router.get('/:id', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
@@ -24,6 +32,8 @@ router.get('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+
+//修改 Todo
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
@@ -32,6 +42,8 @@ router.get('/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+
+//checkbox switch
 router.put('/:id', (req, res) => {
   const id = req.params.id
   const { name, isDone } = req.body
@@ -45,6 +57,7 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//刪除 Todo
 router.delete('/:id', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)

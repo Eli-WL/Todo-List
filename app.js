@@ -8,6 +8,8 @@ const routes = require('./routes') // 引用路由器
 require('./config/mongoose')
 
 const app = express()
+// 如果在 Heroku 環境則使用 process.env.PORT
+// 否則為本地環境，使用 3000 
 const PORT = process.env.PORT || 3000
 
 
